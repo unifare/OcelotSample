@@ -34,7 +34,9 @@ namespace Ids4Center.Mvc
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
                 .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients());
+                .AddInMemoryClients(Config.GetClients()) 
+                .AddResourceOwnerValidator<ResourcePasswordValidator>()//用户验证
+                .AddProfileService<ProfileService>();//扩展claims
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
